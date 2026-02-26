@@ -5,8 +5,8 @@
 #include "stream_reassembler.hh"
 #include "tcp_segment.hh"
 #include "wrapping_integers.hh"
-
 #include <optional>
+
 
 //! \brief The "receiver" part of a TCP implementation.
 
@@ -14,18 +14,21 @@
 //! the acknowledgment number and window size to advertise back to the
 //! remote TCPSender.
 class TCPReceiver {
+  
     //! Our data structure for re-assembling bytes.
     StreamReassembler _reassembler;
 
     //! The maximum number of bytes we'll store.
     size_t _capacity;
+    
+    std::optional<WrappingInt32> _isn;
 
   public:
     //! \brief Construct a TCP receiver
     //!
     //! \param capacity the maximum number of bytes that the receiver will
     //!                 store in its buffers at any give time.
-    TCPReceiver(const size_t capacity) : _reassembler(capacity), _capacity(capacity) {}
+    TCPReceiver(const size_t capacity) : _reassembler(capacity), _capacity(capacity), _isn(std::nullopt) {}
 
     //! \name Accessors to provide feedback to the remote TCPSender
     //!@{
