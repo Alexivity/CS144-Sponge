@@ -1,10 +1,10 @@
-#include "address.hh"
-#include "arp_message.hh"
+#include "../libsponge/util/address.hh"
+#include "../libsponge/tcp_helpers/arp_message.hh"
 #include "bidirectional_stream_copy.hh"
 #include "router.hh"
 #include "tcp_over_ip.hh"
 #include "tcp_sponge_socket.cc"
-#include "util.hh"
+#include "../libsponge/util/util.hh"
 
 #include <cstdlib>
 #include <iostream>
